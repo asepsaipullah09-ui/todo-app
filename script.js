@@ -1,4 +1,5 @@
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let currentFilter = 'all';
 
 const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
@@ -7,7 +8,25 @@ const list = document.getElementById('todo-list');
 function renderTodos() {
     list.innerHTML = "";
 
-    todos.forEach((todo, index) => {
+    let filteredTodos = todos;
+
+    if (currentFilter === 'active') {
+        filteredTodos = todos.filter(todo => !todo.completed);
+    }
+
+    if (currentFilter === 'completed') {
+        filteredTodos = todos.filter(todo => todo.completed);
+    }
+
+    filteredTodos.forEach((todo, index) => {
+        if (filteredTodos.length === 0) {
+            const emptyMsg = document.createElement("p");
+            emptyMsg.className = "empty";
+            emptyMsg.textContent = "No todos here.";
+            list.appendChild(emptyMsg);
+            return;
+        }
+
         const li = document.createElement('li');
         li.className = 'todo-item';
 
@@ -56,6 +75,17 @@ form.addEventListener('submit', function(e) {
     seveTodos();
     renderTodos();
     input.value = "";
+});
+
+const filterButtons = document.querySelectorAll('.filters button');
+filterButtons.forEach((btn) => {
+    btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        currentFilter = this.dataset.filter;
+        renderTodos();
+    });
 });
 
 renderTodos();
