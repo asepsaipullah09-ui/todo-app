@@ -46,9 +46,14 @@ function renderTodos() {
         deleteBtn.style.cursor = "pointer";
 
         deleteBtn.addEventListener('click', function() {
-            todos.splice(index, 1);
-            saveTodos();
-            renderTodos();
+            li.style.opacity = "0";
+            li.style.transform = "translateX(20px)";
+            
+            setTimeout(() => {
+                todos.splice(index, 1);
+                saveTodos();
+                renderTodos();
+            }, 300);
         });
 
         li.appendChild(span);
