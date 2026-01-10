@@ -13,6 +13,22 @@ body {
     align-items: center;
 }
 
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#themeToggle {
+    border: none;
+    background: #eee;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 /* App Container */
 .app {
     background-color: #ffffff;
@@ -93,3 +109,30 @@ body {
     margin-top: 20px;
 }
 
+/* Dark Mode Averride */
+body.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark .app {
+    background-color: #1e1e1e;
+}
+
+body.dark h1 {
+    color: #ffffff;
+}
+
+body.dark .todo-item {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+body.dark .filters button {
+    background-color: #333;
+    color: #ffffff;
+}
+
+body.dark .filters button.active {
+    background-color: #0d6efd;
+}

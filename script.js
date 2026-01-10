@@ -72,7 +72,7 @@ form.addEventListener('submit', function(e) {
         completed: false
     });
 
-    seveTodos();
+    saveTodos();
     renderTodos();
     input.value = "";
 });
@@ -89,3 +89,26 @@ filterButtons.forEach((btn) => {
 });
 
 renderTodos();
+
+// Theme toggle functionality
+const themeToggle = document.getElementById("themeToggle");
+
+// cek tema tersimpan
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "Light";
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeToggle.textContent = "Light";
+    } else {
+        localStorage.setItem("theme", "light");
+        themeToggle.textContent = "Dark";
+    }
+});
+
+console.log("Dark active:", document.body.classList.contains("dark"));
