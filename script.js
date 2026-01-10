@@ -10,8 +10,26 @@ form.addEventListener('submit', function(e) {
 
     const li = document.createElement('li');
     li.className = 'todo-item';
-    li.textContent = todoText;
 
+    const span = document.createElement('span');
+    span.textContent = todoText;
+
+    span.addEventListener('click', function() {
+        li.classList.toggle('completed');
+    });
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'X';
+    deleteBtn.style.border = 'none';
+    deleteBtn.style.background = 'transparent';
+    deleteBtn.style.cursor = 'pointer';
+
+    deleteBtn.addEventListener('click', function() {
+        list.remove();
+    });
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
     input.value = '';
 });
