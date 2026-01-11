@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
+    padding: 16px;
     justify-content: center;
     align-items: center;
 }
@@ -32,6 +33,10 @@ body {
 }
 
 /* Button */
+button {
+    min-height: 44px;
+}
+
 button:hover {
     transform: scale(1.05);
 }
@@ -182,5 +187,32 @@ body.dark .filters button.active {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .app h1 {
+        font-size: 20px;
+    }
+    
+    #todo-form {
+        flex-direction: column;
+    }
+
+    #todo-form button {
+        width: 100%;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
     }
 }
